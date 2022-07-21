@@ -1,15 +1,18 @@
 import { MONGODB_URI } from "../utils/envConfig.ts";
 import { MongoClient } from "mongo";
 
-let client;
+let db;
 async function createMongodbConnection() {
   try {
-    client = new MongoClient();
+    // init  client 
+    const client = new MongoClient();
     await client.connect(MONGODB_URI);
     console.log("mongodb connected");
+
+    db = client.database("fresh-shop")
   } catch (error) {
     console.log(error);
   }
 }
 
-export { client, createMongodbConnection };
+export { db, createMongodbConnection };
