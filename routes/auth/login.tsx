@@ -3,24 +3,18 @@
 import { h } from "preact";
 import { tw } from "twind";
 import AuthLayout from "@layouts/AuthLayout.tsx";
+import AuthHeader from "../../components/auth/AuthHeader.tsx";
 
 export default function AuthLogin() {
   return (
     <AuthLayout>
       <div className={tw`max-w-md w-full p-6 shadow-md bg-white rounded-lg`}>
         {/* login card top section  */}
-        <section className={tw`flex flex-col space-y-2 items-center`}>
-          <div className={tw`flex items-center space-x-3`}>
-            <img className={tw`w-12 h-12`} src="/logo.svg" alt="Shop logo" />
-            <h2 className={tw`text-xl font-bold`}>Fresh Shop</h2>
-          </div>
-          <p className={tw`font-medium text-sm text-gray-500`}>
-            Don`t have account ?{" "}
-            <a className={tw`font-medium text-blue-400`} href="/auth/signup">
-              Create Account
-            </a>
-          </p>
-        </section>
+        <AuthHeader
+          linkHref="/auth/signup"
+          linkName="Signup"
+          text=" Don`t have account ?"
+        />
 
         {/* login card body section  */}
 
@@ -48,9 +42,13 @@ export default function AuthLogin() {
             />
           </div>
 
-
           <div className={tw`flex items-center justify-end`}>
-               <a className={tw`text-blue-400 font-medium text-sm`} href="/auth/forgot-password">Forgot Password?</a>
+            <a
+              className={tw`text-blue-400 font-medium text-sm`}
+              href="/auth/forgot-password"
+            >
+              Forgot Password?
+            </a>
           </div>
 
           <button
