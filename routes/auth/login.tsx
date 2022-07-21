@@ -4,7 +4,7 @@ import { h } from "preact";
 import { tw } from "twind";
 import AuthLayout from "../../layouts/AuthLayout.tsx";
 
-export default function AuthHome() {
+export default function AuthLogin() {
   return (
     <AuthLayout>
       <div className={tw`max-w-md w-full p-6 shadow-md bg-white rounded-lg`}>
