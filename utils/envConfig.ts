@@ -1,5 +1,5 @@
 import { config } from "dotenv";
 
-const { MONGODB_URI } = config();
+const { MONGODB_URI,JWT_SECRET } = config();
 
-export { MONGODB_URI };
+export { MONGODB_URI,JWT_SECRET };
