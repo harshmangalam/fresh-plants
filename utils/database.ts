@@ -6,7 +6,7 @@ async function createMongodbConnection() {
   try {
     client = new MongoClient();
     await client.connect(MONGODB_URI);
-    console.log("mongodb connected")
+    console.log("mongodb connected");
   } catch (error) {
     console.log(error);
   }
