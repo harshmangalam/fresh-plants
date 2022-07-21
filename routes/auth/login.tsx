@@ -9,6 +9,7 @@ import AuthHeader from "@components/auth/AuthHeader.tsx";
 import { isEmpty, validateEmail } from "@utils/validations.ts";
 import { UserSchema } from "@database/schemas/User.ts";
 import { db } from "@database/connection.ts";
+import { createJWT } from "@utils/token.ts";
 
 type LoginFields = {
   email?: string;
@@ -73,6 +74,9 @@ export const handler: Handlers<LoginResponse> = {
           error: { password: "Incorrect password" },
         });
       }
+
+      // generate jwt access token
+      const accessToken = await createJWT({ userId: userSchema._id });
 
       // redirect to home page when successfully login
       return new Response(undefined, {
