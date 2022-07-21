@@ -79,9 +79,11 @@ export const handler: Handlers<LoginResponse> = {
       const accessToken = await createJWT({ userId: userSchema._id });
 
       // redirect to home page when successfully login
+
       return new Response(undefined, {
         status: 302,
         headers: {
+          "Set-Cookie": `access_token=${accessToken}; Secure; HttpCookie;Path=/;SameSite=Strict`,
           location: "/",
         },
       });
