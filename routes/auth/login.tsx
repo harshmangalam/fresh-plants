@@ -3,7 +3,7 @@
 import { h } from "preact";
 import { tw } from "twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
-
+import { matchPassword } from "@utils/password.ts";
 import AuthLayout from "@layouts/AuthLayout.tsx";
 import AuthHeader from "@components/auth/AuthHeader.tsx";
 import { isEmpty, validateEmail } from "@utils/validations.ts";
@@ -66,7 +66,8 @@ export const handler: Handlers<LoginResponse> = {
 
       // match password
 
-      if (userSchema.password !== password) {
+      const match = await matchPassword(password, userSchema.password);
+      if (!match) {
         return ctx.render({
           fields: { email, password },
           error: { password: "Incorrect password" },
