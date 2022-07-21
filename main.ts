@@ -9,14 +9,14 @@ import manifest from "./fresh.gen.ts";
 
 import { config, setup } from "@twind";
 import { virtualSheet } from "twind/sheets";
-import { createMongodbConnection } from "@database/connection.ts";
+
 
 const sheet = virtualSheet();
 sheet.reset();
 setup({ ...config, sheet });
 
 async function render(ctx: RenderContext, render: InnerRenderFunction) {
-  await createMongodbConnection();
+ 
   const snapshot = ctx.state.get("twind") as unknown[] | null;
   sheet.reset(snapshot || undefined);
   render();
