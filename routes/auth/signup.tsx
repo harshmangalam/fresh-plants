@@ -6,7 +6,20 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import AuthLayout from "@layouts/AuthLayout.tsx";
 import AuthHeader from "@components/auth/AuthHeader.tsx";
 import { isEmpty, validateEmail } from "@utils/validations.ts";
-import { SignupError, SignupResponse } from "@types/auth.ts";
+
+type SignupError = {
+  name?: string;
+  email?: string;
+  password?: string;
+  general?: string;
+};
+
+type SignupResponse = {
+  error?: SignupError;
+  result?: {
+    message: string;
+  };
+};
 
 export const handler: Handlers<SignupResponse> = {
   async POST(req, ctx) {

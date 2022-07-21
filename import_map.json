@@ -13,7 +13,6 @@
     "@layouts/": "./layouts/",
     "@islands/": "./islands/",
     "@database/": "./database/",
-    "@utils/":"./utils/",
-    "@types/":"./types/"
+    "@utils/": "./utils/"
   }
 }
