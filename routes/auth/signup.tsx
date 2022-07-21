@@ -2,10 +2,26 @@
 
 import { h } from "preact";
 import { tw } from "twind";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import AuthLayout from "@layouts/AuthLayout.tsx";
 import AuthHeader from "../../components/auth/AuthHeader.tsx";
 
-export default function AuthSignup() {
+export const handler: Handlers = {
+  async POST(req, ctx) {
+    try {
+      // get form data
+      const formData = await req.formData();
+      const name = formData.get("name");
+      const email = formData.get("email");
+      const password = formData.get("password");
+      return ctx.render({ email, name, password });
+    } catch (error) {
+      return ctx.render({ error: { general: error.message } });
+    }
+  },
+};
+export default function AuthSignup({ data }: PageProps) {
+  console.log(data);
   return (
     <AuthLayout>
       <div className={tw`max-w-md w-full p-6 shadow-md bg-white rounded-lg`}>
