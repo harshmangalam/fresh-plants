@@ -6,7 +6,8 @@ import * as $0 from "./routes/auth/forgot-password.tsx";
 import * as $1 from "./routes/auth/index.tsx";
 import * as $2 from "./routes/auth/login.tsx";
 import * as $3 from "./routes/auth/signup.tsx";
-import * as $4 from "./routes/index.tsx";
+import * as $4 from "./routes/auth/verify-otp.tsx";
+import * as $5 from "./routes/index.tsx";
 
 const manifest = {
   routes: {
@@ -14,7 +15,8 @@ const manifest = {
     "./routes/auth/index.tsx": $1,
     "./routes/auth/login.tsx": $2,
     "./routes/auth/signup.tsx": $3,
-    "./routes/index.tsx": $4,
+    "./routes/auth/verify-otp.tsx": $4,
+    "./routes/index.tsx": $5,
   },
   islands: {},
   baseUrl: import.meta.url,
