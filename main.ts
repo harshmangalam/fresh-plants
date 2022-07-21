@@ -9,7 +9,7 @@ import manifest from "./fresh.gen.ts";
 
 import { config, setup } from "@twind";
 import { virtualSheet } from "twind/sheets";
-import { createMongodbConnection } from "./utils/database.ts";
+import { createMongodbConnection } from "./mongodb/connection.ts";
 
 const sheet = virtualSheet();
 sheet.reset();

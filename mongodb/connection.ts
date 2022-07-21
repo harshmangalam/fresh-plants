@@ -1,4 +1,4 @@
-import { MONGODB_URI } from "./envConfig.ts";
+import { MONGODB_URI } from "../utils/envConfig.ts";
 import { MongoClient } from "mongo";
 
 let client;
