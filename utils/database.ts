@@ -1,8 +1,15 @@
 import { MONGODB_URI } from "./envConfig.ts";
-import { MongoClient } from "https://deno.land/x/mongo@v0.30.1/mod.ts";
+import { MongoClient } from "mongo";
 
-const client = new MongoClient();
+let client;
+async function createMongodbConnection() {
+  try {
+    client = new MongoClient();
+    await client.connect(MONGODB_URI);
+    console.log("mongodb connected")
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-await client.connect(MONGODB_URI);
-
-export { client };
+export { client, createMongodbConnection };
