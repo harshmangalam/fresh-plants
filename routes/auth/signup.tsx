@@ -6,6 +6,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import AuthLayout from "@layouts/AuthLayout.tsx";
 import AuthHeader from "@components/auth/AuthHeader.tsx";
 import { isEmpty, validateEmail } from "@utils/validations.ts";
+import { hashPassword } from "@utils/password.ts";
 
 import { db } from "@database/connection.ts";
 import { UserSchema } from "@database/schemas/User.ts";
@@ -25,9 +26,6 @@ type SignupError = {
 type SignupResponse = {
   error?: SignupError;
   fields?: SignupFields;
-  result?: {
-    message: string;
-  };
 };
 
 export const handler: Handlers<SignupResponse> = {
@@ -67,11 +65,14 @@ export const handler: Handlers<SignupResponse> = {
       }
 
       // create new user
+      const hash = await hashPassword(password);
 
       const newUser = await userCollection.insertOne({
         name,
         email,
-        password,
+        password: hash,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       });
 
       if (!newUser) {
