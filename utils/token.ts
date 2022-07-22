@@ -7,5 +7,6 @@ export async function createJWT(payload: any) {
 }
 
 export async function verifyJWT(jwt: string) {
-  return await verify(jwt, JWT_SECRET, ALGO);
+  const payload = await verify(jwt, JWT_SECRET, ALGO);
+  return payload.userId as string;
 }

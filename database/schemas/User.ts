@@ -4,7 +4,7 @@ export interface UserSchema {
   _id?: ObjectId;
   name: string;
   email: string;
-  password: string;
+  password?: string;
   createdAt: Date;
   updatedAt: Date;
 }
