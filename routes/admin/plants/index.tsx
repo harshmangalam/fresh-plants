@@ -15,7 +15,12 @@ export const handler: Handlers = {
 export default function ProductsHome({ data }: PageProps) {
   return (
     <AdminLayout>
-      <table className={tw`w-full border shadow`}>
+      <div className={tw`flex justify-between`}>
+        <a href="plants/create" className={tw`bg-blue-400 text-white rounded-md px-4 py-2 font-bold focus:ring-2 focus:ring-blue-500 hover:bg-blue-500 focus:outline-none`}>
+          Add Plant
+        </a>
+      </div>
+      <table className={tw`w-full border mt-2`}>
         <thead className={tw`bg-gray-100`}>
           <tr>
             <th className={tw`p-4`}>Image</th>

@@ -37,7 +37,7 @@ export default function AdminLayout({ children }: Props) {
           </div>
         </section>
       </aside>
-      <main className={tw`ml-[20%] h-screen overflow-y-auto`}>
+      <main className={tw`ml-[20%] h-screen overflow-y-auto pb-4`}>
         <nav className={tw`flex justify-end items-center p-6 `}>
           <div className={tw`flex space-x-6 items-center `}>
             <div className={tw`relative`}>
