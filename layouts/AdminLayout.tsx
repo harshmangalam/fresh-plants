@@ -12,9 +12,9 @@ interface Props {
 }
 export default function AdminLayout({ children }: Props) {
   return (
-    <div className={tw`flex`}>
+    <div>
       {/* sidebar  */}
-      <aside className={tw`bg-white max-w-xs w-full h-screen p-6  shadow`}>
+      <aside className={tw`absolute top-0 left-0 bottom-0 overflow-y-auto bg-white w-[20%]  p-6  shadow`}>
         <section className={tw`flex flex-col space-y-6`}>
           {/* logo  */}
           <a href="/" className={tw`flex space-x-3 items-center`}>
@@ -37,7 +37,7 @@ export default function AdminLayout({ children }: Props) {
           </div>
         </section>
       </aside>
-      <main className={tw`w-full `}>
+      <main className={tw`ml-[20%] h-screen overflow-y-auto`}>
         <nav className={tw`flex justify-end items-center p-6 `}>
           <div className={tw`flex space-x-6 items-center `}>
             <div className={tw`relative`}>

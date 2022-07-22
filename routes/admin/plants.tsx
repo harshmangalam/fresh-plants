@@ -99,4 +99,70 @@ const plants = [
     createdAt: new Date().toDateString(),
     updatedAt: new Date().toDateString(),
   },
+  {
+    _id: 12,
+    image:
+      " https://cdn.shopify.com/s/files/1/0047/9730/0847/products/nurserylive-plants-aloe-vera-succulent-plant-16968585871500_695x695.jpg?v=1634213151",
+    title: "Plant title small",
+
+    quantity: 34,
+    price: 345,
+    createdAt: new Date().toDateString(),
+    updatedAt: new Date().toDateString(),
+  },
+  {
+    _id: 12,
+    image:
+      " https://cdn.shopify.com/s/files/1/0047/9730/0847/products/nurserylive-plants-aloe-vera-succulent-plant-16968585871500_695x695.jpg?v=1634213151",
+    title: "Plant title small",
+
+    quantity: 34,
+    price: 345,
+    createdAt: new Date().toDateString(),
+    updatedAt: new Date().toDateString(),
+  },
+  {
+    _id: 12,
+    image:
+      " https://cdn.shopify.com/s/files/1/0047/9730/0847/products/nurserylive-plants-aloe-vera-succulent-plant-16968585871500_695x695.jpg?v=1634213151",
+    title: "Plant title small",
+
+    quantity: 34,
+    price: 345,
+    createdAt: new Date().toDateString(),
+    updatedAt: new Date().toDateString(),
+  },
+  {
+    _id: 12,
+    image:
+      " https://cdn.shopify.com/s/files/1/0047/9730/0847/products/nurserylive-plants-aloe-vera-succulent-plant-16968585871500_695x695.jpg?v=1634213151",
+    title: "Plant title small",
+
+    quantity: 34,
+    price: 345,
+    createdAt: new Date().toDateString(),
+    updatedAt: new Date().toDateString(),
+  },
+  {
+    _id: 12,
+    image:
+      " https://cdn.shopify.com/s/files/1/0047/9730/0847/products/nurserylive-plants-aloe-vera-succulent-plant-16968585871500_695x695.jpg?v=1634213151",
+    title: "Plant title small",
+
+    quantity: 34,
+    price: 345,
+    createdAt: new Date().toDateString(),
+    updatedAt: new Date().toDateString(),
+  },
+  {
+    _id: 12,
+    image:
+      " https://cdn.shopify.com/s/files/1/0047/9730/0847/products/nurserylive-plants-aloe-vera-succulent-plant-16968585871500_695x695.jpg?v=1634213151",
+    title: "Plant title small",
+
+    quantity: 34,
+    price: 345,
+    createdAt: new Date().toDateString(),
+    updatedAt: new Date().toDateString(),
+  },
 ];
