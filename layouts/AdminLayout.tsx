@@ -12,9 +12,9 @@ interface Props {
 }
 export default function AdminLayout({ children }: Props) {
   return (
-    <div className={tw`h-screen flex`}>
+    <div className={tw`flex`}>
       {/* sidebar  */}
-      <aside className={tw`bg-white max-w-xs w-full h-full p-6  shadow`}>
+      <aside className={tw`bg-white max-w-xs w-full h-screen p-6  shadow`}>
         <section className={tw`flex flex-col space-y-6`}>
           {/* logo  */}
           <a href="/" className={tw`flex space-x-3 items-center`}>
@@ -73,6 +73,7 @@ export default function AdminLayout({ children }: Props) {
             </a>
           </div>
         </nav>
+        <div className={tw`px-6`}>{children}</div>
       </main>
     </div>
   );
@@ -85,9 +86,9 @@ const menus = [
     href: "/admin",
   },
   {
-    name: "Products",
+    name: "Plants",
     icon: <ProductIcon />,
-    href: "/admin/products",
+    href: "/admin/plants",
   },
   {
     name: "Customers",
