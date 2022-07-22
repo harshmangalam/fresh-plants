@@ -3,22 +3,24 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import * as $0 from "./routes/_middleware.ts";
-import * as $1 from "./routes/auth/forgot-password.tsx";
-import * as $2 from "./routes/auth/index.tsx";
-import * as $3 from "./routes/auth/login.tsx";
-import * as $4 from "./routes/auth/signup.tsx";
-import * as $5 from "./routes/auth/verify-otp.tsx";
-import * as $6 from "./routes/index.tsx";
+import * as $1 from "./routes/admin/index.tsx";
+import * as $2 from "./routes/auth/forgot-password.tsx";
+import * as $3 from "./routes/auth/index.tsx";
+import * as $4 from "./routes/auth/login.tsx";
+import * as $5 from "./routes/auth/signup.tsx";
+import * as $6 from "./routes/auth/verify-otp.tsx";
+import * as $7 from "./routes/index.tsx";
 
 const manifest = {
   routes: {
     "./routes/_middleware.ts": $0,
-    "./routes/auth/forgot-password.tsx": $1,
-    "./routes/auth/index.tsx": $2,
-    "./routes/auth/login.tsx": $3,
-    "./routes/auth/signup.tsx": $4,
-    "./routes/auth/verify-otp.tsx": $5,
-    "./routes/index.tsx": $6,
+    "./routes/admin/index.tsx": $1,
+    "./routes/auth/forgot-password.tsx": $2,
+    "./routes/auth/index.tsx": $3,
+    "./routes/auth/login.tsx": $4,
+    "./routes/auth/signup.tsx": $5,
+    "./routes/auth/verify-otp.tsx": $6,
+    "./routes/index.tsx": $7,
   },
   islands: {},
   baseUrl: import.meta.url,
