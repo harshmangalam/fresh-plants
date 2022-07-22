@@ -3,11 +3,17 @@ import { h } from "preact";
 import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import AdminLayout from "@layouts/AdminLayout.tsx";
-import DeleteIcon from "@icons/DeleteIcon.tsx";
-import EditIcon from "@icons/EditIcon.tsx";
 
 export const handler: Handlers = {
-  POST(req, ctx) {
+  async POST(req, ctx) {
+    const formData = await req.formData();
+
+    const name = formData.get("name") as string;
+    const description = formData.get("description") as string;
+    const price = formData.get("price") as string;
+    const quantity = formData.get("quantity") as string;
+    const image = formData.get("image") as File;
+    console.log({ name, image, price, description, quantity });
     return ctx.render();
   },
 };
@@ -17,6 +23,8 @@ export default function PlantsCreate({ data }: PageProps) {
   return (
     <AdminLayout>
       <form
+        method="post"
+        encType="multipart/form-data"
         className={tw`grid grid-cols-2 gap-4 max-w-xl mx-auto border shadow rounded-xl p-6`}
       >
         <div className={tw`flex flex-col space-y-2 col-span-2`}>
