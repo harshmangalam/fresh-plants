@@ -1,6 +1,6 @@
 import { ObjectId } from "mongo";
 
-enum UserRole {
+export enum UserRole {
   user,
   admin,
 }

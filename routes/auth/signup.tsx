@@ -9,7 +9,7 @@ import { isEmpty, validateEmail } from "@utils/validations.ts";
 import { hashPassword } from "@utils/password.ts";
 
 import { db } from "@database/connection.ts";
-import { UserSchema } from "@database/schemas/User.ts";
+import { UserRole, UserSchema } from "@database/schemas/User.ts";
 type SignupFields = {
   name?: string;
   email?: string;
@@ -64,13 +64,13 @@ export const handler: Handlers<SignupResponse> = {
         });
       }
 
-      // create new user
       const hash = await hashPassword(password);
-
+      // create new user
       const newUser = await userCollection.insertOne({
         name,
         email,
         password: hash,
+        role: UserRole.user,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
