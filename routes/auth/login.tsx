@@ -7,7 +7,7 @@ import { matchPassword } from "@utils/password.ts";
 import AuthLayout from "@layouts/AuthLayout.tsx";
 import AuthHeader from "@components/auth/AuthHeader.tsx";
 import { isEmpty, validateEmail } from "@utils/validations.ts";
-import { UserSchema } from "@database/schemas/User.ts";
+import { UserSchema } from "@database/user.ts";
 import { db } from "@database/connection.ts";
 import { createJWT } from "@utils/token.ts";
 
