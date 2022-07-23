@@ -9,7 +9,7 @@ import { isEmpty, validateEmail } from "@utils/validations.ts";
 import { hashPassword } from "@utils/password.ts";
 
 import { db } from "@database/connection.ts";
-import { UserRole, UserSchema } from "@database/user.ts";
+import { UserRole, UserSchema } from "@database/users.ts";
 type SignupFields = {
   name?: string;
   email?: string;
