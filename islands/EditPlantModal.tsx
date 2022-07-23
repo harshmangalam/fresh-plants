@@ -6,7 +6,7 @@ import { tw } from "twind";
 import EditIcon from "@icons/EditIcon.tsx";
 import { useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-
+import ImageUpload from "./ImageUpload.tsx"
 interface Props {
   _id: string;
   description: string;
@@ -62,7 +62,9 @@ export default function EditPlantModal({
               >
                 <form method="post" encType="multipart/form-data">
                   <input type="hidden" name="_id" value={_id} />
-                  <div className={tw`grid grid-cols-2 gap-4 bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4`}>
+                  <div
+                    className={tw`grid grid-cols-2 gap-4 bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4`}
+                  >
                     <div className={tw`flex flex-col space-y-2 col-span-2`}>
                       <label
                         className={tw`font-normal text-gray-600`}
@@ -167,17 +169,7 @@ export default function EditPlantModal({
                       >
                         Plant Image
                       </label>
-                      <input
-                        accept="image/*"
-                        type="file"
-                        className={tw`${
-                          error?.image
-                            ? "ring-2 ring-red-400 focus:ring-red-400"
-                            : "focus:ring-blue-400"
-                        } outline-none px-4 py-3 border border-gray-400 rounded-md focus:ring-2`}
-                        name="image"
-                        id="image"
-                      />
+                      <ImageUpload name="image" />
                       {error?.image && (
                         <p className={tw`text-red-500 text-sm`}>
                           {error.image}
