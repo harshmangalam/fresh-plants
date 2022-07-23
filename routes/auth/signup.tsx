@@ -7,6 +7,7 @@ import AuthLayout from "@layouts/AuthLayout.tsx";
 import AuthHeader from "@components/auth/AuthHeader.tsx";
 import { isEmpty, validateEmail } from "@utils/validations.ts";
 import { hashPassword } from "@utils/password.ts";
+import { Status } from "http/http_status.ts";
 
 import { db } from "@database/connection.ts";
 import { UserRole, UserSchema } from "@database/index.ts";
@@ -84,7 +85,7 @@ export const handler: Handlers<SignupResponse> = {
 
       // redirect to login page when successfully registered
       return new Response(undefined, {
-        status: 302,
+        status: Status.Found,
         headers: {
           location: "/auth/login",
         },
