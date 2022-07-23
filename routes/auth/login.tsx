@@ -10,6 +10,7 @@ import { isEmpty, validateEmail } from "@utils/validations.ts";
 import { UserSchema } from "@database/index.ts";
 import { db } from "@database/connection.ts";
 import { createJWT } from "@utils/token.ts";
+import { Status } from "http/http_status.ts";
 
 type LoginFields = {
   email?: string;
@@ -81,7 +82,7 @@ export const handler: Handlers<LoginResponse> = {
       // redirect to home page when successfully login
 
       return new Response(undefined, {
-        status: 302,
+        status: Status.Found,
         headers: {
           "Set-Cookie": `access_token=${accessToken}; Secure; HttpCookie;Path=/;SameSite=Strict`,
           location: "/",
