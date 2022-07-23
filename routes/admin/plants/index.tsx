@@ -5,7 +5,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import AdminLayout from "@layouts/AdminLayout.tsx";
 import DeleteIcon from "@icons/DeleteIcon.tsx";
 import EditIcon from "@icons/EditIcon.tsx";
-import { fetchPlants, PlantSchema } from "@database/index.ts";
+import { fetchPlants, PlantSchema, deletePlant } from "@database/index.ts";
 
 export const handler: Handlers<PlantSchema[]> = {
   async GET(req, ctx) {
@@ -13,6 +13,25 @@ export const handler: Handlers<PlantSchema[]> = {
       const plants = await fetchPlants();
       return ctx.render(plants);
     } catch (error) {
+      console.log(error);
+      return new Response(undefined, { status: 500 });
+    }
+  },
+
+  async POST(req, ctx) {
+    try {
+      const formData = await req.formData();
+      const action = formData.get("_action");
+      if (action === "delete") {
+        const _id = formData.get("_id") as string;
+        await deletePlant(_id);
+      }
+      return new Response(undefined, {
+        status: 302,
+        headers: { location: "/admin/plants" },
+      });
+    } catch (error) {
+      console.log(error);
       return new Response(undefined, { status: 500 });
     }
   },
@@ -53,17 +72,29 @@ export default function ProductsHome({ data }: PageProps<PlantSchema[]>) {
               <td className={tw`p-4 text-center `}>{plant.name}</td>
               <td className={tw`p-4 text-center`}>{plant.quantity}</td>
               <td className={tw`p-4 text-center`}>{plant.price}</td>
-              <td className={tw`p-4 text-center`}>{plant.createdAt.toDateString()}</td>
-              <td className={tw`p-4 text-center`}>{plant.updatedAt.toDateString()}</td>
+              <td className={tw`p-4 text-center`}>
+                {plant.createdAt.toDateString()}
+              </td>
+              <td className={tw`p-4 text-center`}>
+                {plant.updatedAt.toDateString()}
+              </td>
 
               <td className={tw`p-4`}>
                 <div className={tw`flex justify-center space-x-2`}>
                   <button className={tw`focus:outline-none text-blue-500`}>
                     <EditIcon />
                   </button>
-                  <button className={tw`focus:outline-none text-red-500`}>
-                    <DeleteIcon />
-                  </button>
+
+                  <form method="POST">
+                    <input type="hidden" name="_id" value={plant._id} />
+                    <button
+                      name="_action"
+                      value="delete"
+                      className={tw`focus:outline-none text-red-500`}
+                    >
+                      <DeleteIcon />
+                    </button>
+                  </form>
                 </div>
               </td>
             </tr>
