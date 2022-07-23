@@ -10,8 +10,10 @@ import {
   PlantSchema,
   deletePlant,
   editPlant,
+  fetchPlant,
 } from "@database/index.ts";
 import EditPlantModal from "@islands/EditPlantModal.tsx";
+import { deleteFile } from "@utils/file.ts";
 export const handler: Handlers<PlantSchema[]> = {
   async GET(req, ctx) {
     try {
@@ -29,7 +31,13 @@ export const handler: Handlers<PlantSchema[]> = {
       const action = formData.get("_action");
       if (action === "delete") {
         const _id = formData.get("_id") as string;
-        await deletePlant(_id);
+        const plant = await fetchPlant(_id);
+        if (plant) {
+          if (plant.image) {
+            await deleteFile(plant.image);
+          }
+          await deletePlant(_id);
+        }
       }
 
       if (action === "edit") {
@@ -59,7 +67,7 @@ export const handler: Handlers<PlantSchema[]> = {
     }
   },
 };
-export default function ProductsHome({ data,url }: PageProps<PlantSchema[]>) {
+export default function ProductsHome({ data, url }: PageProps<PlantSchema[]>) {
   return (
     <AdminLayout>
       <div className={tw`flex justify-between`}>

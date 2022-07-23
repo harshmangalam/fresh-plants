@@ -15,6 +15,16 @@ export async function fileUpload(file: File) {
   return fileName;
 }
 
+export async function deleteFile(file: string) {
+  try {
+    const isExist = await exists(`${IMAGE_DIR}/${file}`);
+    if (isExist) {
+      await Deno.remove(`${IMAGE_DIR}/${file}`);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 export async function exists(path: string) {
   try {
     await Deno.stat(path);

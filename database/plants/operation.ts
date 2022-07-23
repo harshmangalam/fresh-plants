@@ -14,6 +14,14 @@ export async function createPlant(plant: CreatePlantSchema) {
   return plantId.toString();
 }
 
+export async function fetchPlant(id: string) {
+  const plant = await plantCollection.findOne({
+    _id: new ObjectId(id),
+  });
+
+  return plant;
+}
+
 export async function fetchPlants() {
   const cursor = plantCollection.find();
   const plants = await cursor.toArray();
