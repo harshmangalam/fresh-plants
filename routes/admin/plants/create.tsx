@@ -3,7 +3,7 @@ import { h } from "preact";
 import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import AdminLayout from "@layouts/AdminLayout.tsx";
-
+import { createPlant } from "@database/index.ts";
 export const handler: Handlers = {
   async POST(req, ctx) {
     const formData = await req.formData();
@@ -13,8 +13,21 @@ export const handler: Handlers = {
     const price = formData.get("price") as string;
     const quantity = formData.get("quantity") as string;
     const image = formData.get("image") as File;
-    console.log({ name, image, price, description, quantity });
-    return ctx.render();
+
+    const plantId = createPlant({
+      name,
+      image: "",
+      price: Number(price),
+      description,
+      quantity: Number(quantity),
+    });
+
+    return new Response(undefined, {
+      status: 302,
+      headers: {
+        location: "/admin/plants",
+      },
+    });
   },
 };
 export default function PlantsCreate({ data }: PageProps) {

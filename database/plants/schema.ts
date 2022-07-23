@@ -2,7 +2,7 @@ export interface PlantSchema {
   _id: string;
   createdAt: Date;
   updatedAt: Date;
-  title: string;
+  name: string;
   description: string;
   quantity: number;
   price: number;
@@ -10,7 +10,7 @@ export interface PlantSchema {
 }
 
 export interface CreatePlantSchema {
-  title: string;
+  name: string;
   description: string;
   quantity: number;
   price: number;
