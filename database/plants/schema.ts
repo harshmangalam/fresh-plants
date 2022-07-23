@@ -22,4 +22,5 @@ export interface UpdatePlantSchema {
   quantity: number;
   price: number;
   image: string;
+  updatedAt: Date;
 }

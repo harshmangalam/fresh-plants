@@ -12,6 +12,7 @@ import * as $6 from "./routes/auth/login.tsx";
 import * as $7 from "./routes/auth/signup.tsx";
 import * as $8 from "./routes/auth/verify-otp.tsx";
 import * as $9 from "./routes/index.tsx";
+import * as $$0 from "./islands/EditPlantModal.tsx";
 
 const manifest = {
   routes: {
@@ -26,7 +27,9 @@ const manifest = {
     "./routes/auth/verify-otp.tsx": $8,
     "./routes/index.tsx": $9,
   },
-  islands: {},
+  islands: {
+    "./islands/EditPlantModal.tsx": $$0,
+  },
   baseUrl: import.meta.url,
 };
 

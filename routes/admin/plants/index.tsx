@@ -4,9 +4,13 @@ import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import AdminLayout from "@layouts/AdminLayout.tsx";
 import DeleteIcon from "@icons/DeleteIcon.tsx";
-import EditIcon from "@icons/EditIcon.tsx";
-import { fetchPlants, PlantSchema, deletePlant } from "@database/index.ts";
-
+import {
+  fetchPlants,
+  PlantSchema,
+  deletePlant,
+  editPlant,
+} from "@database/index.ts";
+import EditPlantModal from "@islands/EditPlantModal.tsx";
 export const handler: Handlers<PlantSchema[]> = {
   async GET(req, ctx) {
     try {
@@ -25,6 +29,24 @@ export const handler: Handlers<PlantSchema[]> = {
       if (action === "delete") {
         const _id = formData.get("_id") as string;
         await deletePlant(_id);
+      }
+
+      if (action === "edit") {
+        const _id = formData.get("_id") as string;
+        const name = formData.get("name") as string;
+        const description = formData.get("description") as string;
+        const price = formData.get("price") as string;
+        const quantity = formData.get("quantity") as string;
+        const image = formData.get("image") as File;
+
+        await editPlant(_id, {
+          name,
+          description,
+          price: Number(price),
+          quantity: Number(quantity),
+          updatedAt: new Date(),
+          image: "",
+        });
       }
       return new Response(undefined, {
         status: 302,
@@ -81,9 +103,7 @@ export default function ProductsHome({ data }: PageProps<PlantSchema[]>) {
 
               <td className={tw`p-4`}>
                 <div className={tw`flex justify-center space-x-2`}>
-                  <button className={tw`focus:outline-none text-blue-500`}>
-                    <EditIcon />
-                  </button>
+                  <EditPlantModal {...plant} />
 
                   <form method="POST">
                     <input type="hidden" name="_id" value={plant._id} />
