@@ -87,7 +87,7 @@ export default function ProductsHome({ data }: PageProps<PlantSchema[]>) {
             <tr key={plant._id} className={tw`border`}>
               <td className={tw`p-4 grid place-items-center`}>
                 <img
-                  src={plant.image}
+                  src={`/images/${plant.image}`}
                   alt={plant.name}
                   className={tw`w-16 h-16 rounded-full`}
                 />

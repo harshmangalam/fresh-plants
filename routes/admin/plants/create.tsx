@@ -6,7 +6,7 @@ import AdminLayout from "@layouts/AdminLayout.tsx";
 import { createPlant } from "@database/index.ts";
 import { Status } from "http/http_status.ts";
 import ImageUpload from "../../../islands/ImageUpload.tsx";
-
+import { fileUpload } from "@utils/file.ts";
 export const handler: Handlers = {
   async POST(req, ctx) {
     try {
@@ -18,9 +18,11 @@ export const handler: Handlers = {
       const quantity = formData.get("quantity") as string;
       const image = formData.get("image") as File;
 
+      console.log(image);
+      const imageUrl = await fileUpload(image);
       const plantId = createPlant({
         name,
-        image: "",
+        image: imageUrl,
         price: Number(price),
         description,
         quantity: Number(quantity),
