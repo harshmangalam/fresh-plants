@@ -9,12 +9,15 @@ import SettingIcon from "@icons/SettingIcon.tsx";
 import OrderIcon from "@icons/OrderIcon.tsx";
 interface Props {
   children: ComponentChildren;
+  pathname: string;
 }
-export default function AdminLayout({ children }: Props) {
+export default function AdminLayout({ children, pathname }: Props) {
   return (
     <div>
       {/* sidebar  */}
-      <aside className={tw`absolute top-0 left-0 bottom-0 overflow-y-auto bg-white w-[20%]  p-6  shadow`}>
+      <aside
+        className={tw`absolute top-0 left-0 bottom-0 overflow-y-auto bg-white w-[20%]  p-6  shadow`}
+      >
         <section className={tw`flex flex-col space-y-6`}>
           {/* logo  */}
           <a href="/" className={tw`flex space-x-3 items-center`}>
@@ -28,7 +31,9 @@ export default function AdminLayout({ children }: Props) {
             {menus.map((menu) => (
               <a
                 href={menu.href}
-                className={tw`font-medium text-gray-500 hover:text-gray-900 flex items-center space-x-2 py-3 px-2 hover:bg-gray-100 rounded-md transition ease-in-out  duration-300`}
+                className={tw`${
+                  pathname === menu.href ? "text-gray-900 bg-gray-100" : "text-gray-500"
+                } font-medium  hover:text-gray-900 flex items-center space-x-2 py-3 px-2 hover:bg-gray-100 rounded-md transition ease-in-out  duration-300`}
               >
                 <div>{menu.icon}</div>
                 <p>{menu.name}</p>
@@ -93,12 +98,12 @@ const menus = [
   {
     name: "Customers",
     icon: <UserIcon />,
-    href: "admin/customers",
+    href: "/admin/customers",
   },
   {
     name: "Orders",
     icon: <OrderIcon />,
-    href: "admin/orders",
+    href: "/admin/orders",
   },
 
   {

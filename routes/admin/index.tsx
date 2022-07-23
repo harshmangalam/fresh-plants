@@ -10,9 +10,10 @@ export const handler: Handlers = {
     return ctx.render();
   },
 };
-export default function AdminHome({ data }: PageProps) {
+export default function AdminHome({ data,url }: PageProps) {
+  console.log(url)
   return (
-    <AdminLayout>
+    <AdminLayout pathname={url.pathname}>
       <div>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae
         omnis voluptas tempore cumque voluptatem, nemo quam quisquam! Magnam
