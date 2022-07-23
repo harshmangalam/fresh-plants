@@ -1,4 +1,4 @@
-const IMAGE_DIR = "static/images";
+export const IMAGE_DIR = "images";
 
 export async function fileUpload(file: File) {
   const isExist = await exists(IMAGE_DIR);
@@ -15,7 +15,7 @@ export async function fileUpload(file: File) {
   return fileName;
 }
 
-async function exists(path: string) {
+export async function exists(path: string) {
   try {
     await Deno.stat(path);
     return true;

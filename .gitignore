@@ -2,3 +2,4 @@
 .env
 templates
 static/images
+images/

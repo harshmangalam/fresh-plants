@@ -59,7 +59,7 @@ export const handler: Handlers<PlantSchema[]> = {
     }
   },
 };
-export default function ProductsHome({ data }: PageProps<PlantSchema[]>) {
+export default function ProductsHome({ data,url }: PageProps<PlantSchema[]>) {
   return (
     <AdminLayout>
       <div className={tw`flex justify-between`}>
@@ -87,9 +87,9 @@ export default function ProductsHome({ data }: PageProps<PlantSchema[]>) {
             <tr key={plant._id} className={tw`border`}>
               <td className={tw`p-4 grid place-items-center`}>
                 <img
-                  src={`/images/${plant.image}`}
+                  src={`${url.origin}/api/file-stream?file=${plant.image}`}
                   alt={plant.name}
-                  className={tw`w-16 h-16 rounded-full`}
+                  className={tw`w-full h-16 object-contain`}
                 />
               </td>
               <td className={tw`p-4 text-center `}>{plant.name}</td>

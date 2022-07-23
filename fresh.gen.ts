@@ -6,12 +6,13 @@ import * as $0 from "./routes/_middleware.ts";
 import * as $1 from "./routes/admin/index.tsx";
 import * as $2 from "./routes/admin/plants/create.tsx";
 import * as $3 from "./routes/admin/plants/index.tsx";
-import * as $4 from "./routes/auth/forgot-password.tsx";
-import * as $5 from "./routes/auth/index.tsx";
-import * as $6 from "./routes/auth/login.tsx";
-import * as $7 from "./routes/auth/signup.tsx";
-import * as $8 from "./routes/auth/verify-otp.tsx";
-import * as $9 from "./routes/index.tsx";
+import * as $4 from "./routes/api/file-stream.ts";
+import * as $5 from "./routes/auth/forgot-password.tsx";
+import * as $6 from "./routes/auth/index.tsx";
+import * as $7 from "./routes/auth/login.tsx";
+import * as $8 from "./routes/auth/signup.tsx";
+import * as $9 from "./routes/auth/verify-otp.tsx";
+import * as $10 from "./routes/index.tsx";
 import * as $$0 from "./islands/EditPlantModal.tsx";
 import * as $$1 from "./islands/ImageUpload.tsx";
 
@@ -21,12 +22,13 @@ const manifest = {
     "./routes/admin/index.tsx": $1,
     "./routes/admin/plants/create.tsx": $2,
     "./routes/admin/plants/index.tsx": $3,
-    "./routes/auth/forgot-password.tsx": $4,
-    "./routes/auth/index.tsx": $5,
-    "./routes/auth/login.tsx": $6,
-    "./routes/auth/signup.tsx": $7,
-    "./routes/auth/verify-otp.tsx": $8,
-    "./routes/index.tsx": $9,
+    "./routes/api/file-stream.ts": $4,
+    "./routes/auth/forgot-password.tsx": $5,
+    "./routes/auth/index.tsx": $6,
+    "./routes/auth/login.tsx": $7,
+    "./routes/auth/signup.tsx": $8,
+    "./routes/auth/verify-otp.tsx": $9,
+    "./routes/index.tsx": $10,
   },
   islands: {
     "./islands/EditPlantModal.tsx": $$0,

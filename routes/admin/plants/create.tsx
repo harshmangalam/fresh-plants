@@ -18,7 +18,6 @@ export const handler: Handlers = {
       const quantity = formData.get("quantity") as string;
       const image = formData.get("image") as File;
 
-      console.log(image);
       const imageUrl = await fileUpload(image);
       const plantId = createPlant({
         name,
