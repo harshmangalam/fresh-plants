@@ -16,3 +16,10 @@ export interface CreatePlantSchema {
   price: number;
   image: string;
 }
+export interface UpdatePlantSchema {
+  name: string;
+  description: string;
+  quantity: number;
+  price: number;
+  image: string;
+}

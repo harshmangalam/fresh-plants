@@ -1,4 +1,4 @@
-import { CreatePlantSchema, PlantSchema } from "./schema.ts";
+import { CreatePlantSchema, PlantSchema, UpdatePlantSchema } from "./schema.ts";
 import { db } from "../connection.ts";
 import { ObjectId } from "mongo";
 
@@ -21,9 +21,20 @@ export async function fetchPlants() {
 }
 
 export async function deletePlant(id: string) {
-  const n = await plantCollection.deleteOne({
+  const count = await plantCollection.deleteOne({
     _id: new ObjectId(id),
   });
 
-  return n;
+  return count;
+}
+
+export async function editPlant(id: string, data: UpdatePlantSchema) {
+  const update = await plantCollection.updateOne(
+    {
+      _id: new ObjectId(id),
+    },
+    { $set: data }
+  );
+
+  return update.modifiedCount;
 }
