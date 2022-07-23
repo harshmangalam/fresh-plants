@@ -13,12 +13,12 @@ import {
   fetchPlant,
 } from "@database/index.ts";
 import EditPlantModal from "@islands/EditPlantModal.tsx";
-import { deleteFile } from "@utils/file.ts";
-export const handler: Handlers<PlantSchema[]> = {
+import { deleteFile, fileUpload } from "@utils/file.ts";
+export const handler: Handlers<{ error?: string; result?: PlantSchema[] }> = {
   async GET(req, ctx) {
     try {
       const plants = await fetchPlants();
-      return ctx.render(plants);
+      return ctx.render({ result: plants });
     } catch (error) {
       console.log(error);
       return new Response(undefined, { status: Status.InternalServerError });
@@ -42,11 +42,24 @@ export const handler: Handlers<PlantSchema[]> = {
 
       if (action === "edit") {
         const _id = formData.get("_id") as string;
+        // if plant not found return error
+        const plant = await fetchPlant(_id);
+
+        if (!plant) {
+          return ctx.render({ error: "Plant not found" });
+        }
+
         const name = formData.get("name") as string;
         const description = formData.get("description") as string;
         const price = formData.get("price") as string;
         const quantity = formData.get("quantity") as string;
         const image = formData.get("image") as File;
+        let imageName = plant.image;
+
+        if (image) {
+          imageName = await fileUpload(image);
+          await deleteFile(plant.image);
+        }
 
         await editPlant(_id, {
           name,
@@ -54,7 +67,7 @@ export const handler: Handlers<PlantSchema[]> = {
           price: Number(price),
           quantity: Number(quantity),
           updatedAt: new Date(),
-          image: "",
+          image: imageName,
         });
       }
       return new Response(undefined, {
@@ -67,10 +80,14 @@ export const handler: Handlers<PlantSchema[]> = {
     }
   },
 };
-export default function ProductsHome({ data, url }: PageProps<PlantSchema[]>) {
+export default function ProductsHome({
+  data,
+  url,
+}: PageProps<{ error?: string; result?: PlantSchema[] }>) {
   return (
     <AdminLayout>
-      <div className={tw`flex justify-between`}>
+      {data?.error && <p>{data.error}</p>}
+      <div className={tw`flex justify-between mt-2`}>
         <a
           href="plants/create"
           className={tw`bg-blue-400 text-white rounded-md px-4 py-2 font-bold focus:ring-2 focus:ring-blue-500 hover:bg-blue-500 focus:outline-none`}
@@ -91,7 +108,7 @@ export default function ProductsHome({ data, url }: PageProps<PlantSchema[]>) {
           </tr>
         </thead>
         <tbody className={tw``}>
-          {data.map((plant) => (
+          {data.result?.map((plant) => (
             <tr key={plant._id} className={tw`border`}>
               <td className={tw`p-4 grid place-items-center`}>
                 <img
@@ -112,7 +129,10 @@ export default function ProductsHome({ data, url }: PageProps<PlantSchema[]>) {
 
               <td className={tw`p-4`}>
                 <div className={tw`flex justify-center space-x-2`}>
-                  <EditPlantModal {...plant} />
+                  <EditPlantModal
+                    {...plant}
+                    image={`${url.origin}/api/file-stream?file=${plant.image}`}
+                  />
 
                   <form method="POST">
                     <input type="hidden" name="_id" value={plant._id} />

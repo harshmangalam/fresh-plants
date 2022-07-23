@@ -6,12 +6,13 @@ import { useRef, useState } from "preact/hooks";
 import DeleteIcon from "@icons/DeleteIcon.tsx";
 interface Props {
   name: string;
+  image?: string;
   className?: string;
 }
 
-export default function ImageUpload({ name, className }: Props) {
+export default function ImageUpload({ name, className, image }: Props) {
   const imageRef = useRef<HTMLInputElement | null>(null);
-  const [imageUrl, setImageUrl] = useState<unknown>();
+  const [imageUrl, setImageUrl] = useState<unknown>(image  || "");
 
   const handleImageChange = (event: Event) => {
     const files = (event.target as HTMLInputElement).files as FileList;

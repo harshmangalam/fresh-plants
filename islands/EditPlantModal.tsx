@@ -29,6 +29,7 @@ export default function EditPlantModal({
   price,
   quantity,
   error,
+  image
 }: Props) {
   const [open, setOpen] = useState(false);
 
@@ -169,7 +170,7 @@ export default function EditPlantModal({
                       >
                         Plant Image
                       </label>
-                      <ImageUpload name="image" />
+                      <ImageUpload name="image" image={image} />
                       {error?.image && (
                         <p className={tw`text-red-500 text-sm`}>
                           {error.image}
