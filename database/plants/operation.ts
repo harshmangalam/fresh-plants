@@ -12,3 +12,9 @@ export async function createPlant(plant: CreatePlantSchema) {
 
   return plantId.toString();
 }
+
+export async function fetchPlants() {
+  const cursor = plantCollection.find();
+  const plants = await cursor.toArray();
+  return plants;
+}
