@@ -4,30 +4,36 @@ import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import AdminLayout from "@layouts/AdminLayout.tsx";
 import { createPlant } from "@database/index.ts";
+import { Status } from "http/http_status.ts";
+
 export const handler: Handlers = {
   async POST(req, ctx) {
-    const formData = await req.formData();
+    try {
+      const formData = await req.formData();
 
-    const name = formData.get("name") as string;
-    const description = formData.get("description") as string;
-    const price = formData.get("price") as string;
-    const quantity = formData.get("quantity") as string;
-    const image = formData.get("image") as File;
+      const name = formData.get("name") as string;
+      const description = formData.get("description") as string;
+      const price = formData.get("price") as string;
+      const quantity = formData.get("quantity") as string;
+      const image = formData.get("image") as File;
 
-    const plantId = createPlant({
-      name,
-      image: "",
-      price: Number(price),
-      description,
-      quantity: Number(quantity),
-    });
+      const plantId = createPlant({
+        name,
+        image: "",
+        price: Number(price),
+        description,
+        quantity: Number(quantity),
+      });
 
-    return new Response(undefined, {
-      status: 302,
-      headers: {
-        location: "/admin/plants",
-      },
-    });
+      return new Response(undefined, {
+        status: Status.Found,
+        headers: {
+          location: "/admin/plants",
+        },
+      });
+    } catch (error) {
+      return ctx.render({ error: { general: error.message } });
+    }
   },
 };
 export default function PlantsCreate({ data }: PageProps) {
@@ -35,6 +41,7 @@ export default function PlantsCreate({ data }: PageProps) {
   const error = data?.error;
   return (
     <AdminLayout>
+      {error?.general && <p>{error.general}</p>}
       <form
         method="post"
         encType="multipart/form-data"
