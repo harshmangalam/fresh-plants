@@ -4,7 +4,6 @@ import { h } from "preact";
 import { tw } from "twind";
 
 import EditIcon from "@icons/EditIcon.tsx";
-import { PlantSchema } from "@database/index.ts";
 import { useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 
@@ -26,7 +25,6 @@ interface Props {
 export default function EditPlantModal({
   _id,
   description,
-  image,
   name,
   price,
   quantity,
@@ -64,7 +62,7 @@ export default function EditPlantModal({
               >
                 <form method="post" encType="multipart/form-data">
                   <input type="hidden" name="_id" value={_id} />
-                  <div className={tw`bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4`}>
+                  <div className={tw`grid grid-cols-2 gap-4 bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4`}>
                     <div className={tw`flex flex-col space-y-2 col-span-2`}>
                       <label
                         className={tw`font-normal text-gray-600`}
