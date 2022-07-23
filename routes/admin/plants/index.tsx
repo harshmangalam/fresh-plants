@@ -4,6 +4,7 @@ import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import AdminLayout from "@layouts/AdminLayout.tsx";
 import DeleteIcon from "@icons/DeleteIcon.tsx";
+import { Status } from "http/http_status.ts";
 import {
   fetchPlants,
   PlantSchema,
@@ -18,7 +19,7 @@ export const handler: Handlers<PlantSchema[]> = {
       return ctx.render(plants);
     } catch (error) {
       console.log(error);
-      return new Response(undefined, { status: 500 });
+      return new Response(undefined, { status: Status.InternalServerError });
     }
   },
 
@@ -49,12 +50,12 @@ export const handler: Handlers<PlantSchema[]> = {
         });
       }
       return new Response(undefined, {
-        status: 302,
+        status: Status.Found,
         headers: { location: "/admin/plants" },
       });
     } catch (error) {
       console.log(error);
-      return new Response(undefined, { status: 500 });
+      return new Response(undefined, { status: Status.InternalServerError });
     }
   },
 };
