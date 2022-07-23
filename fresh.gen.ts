@@ -3,32 +3,34 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import * as $0 from "./routes/_middleware.ts";
-import * as $1 from "./routes/admin/index.tsx";
-import * as $2 from "./routes/admin/plants/create.tsx";
-import * as $3 from "./routes/admin/plants/index.tsx";
-import * as $4 from "./routes/api/file-stream.ts";
-import * as $5 from "./routes/auth/forgot-password.tsx";
-import * as $6 from "./routes/auth/index.tsx";
-import * as $7 from "./routes/auth/login.tsx";
-import * as $8 from "./routes/auth/signup.tsx";
-import * as $9 from "./routes/auth/verify-otp.tsx";
-import * as $10 from "./routes/index.tsx";
+import * as $1 from "./routes/admin/customers/index.tsx";
+import * as $2 from "./routes/admin/index.tsx";
+import * as $3 from "./routes/admin/plants/create.tsx";
+import * as $4 from "./routes/admin/plants/index.tsx";
+import * as $5 from "./routes/api/file-stream.ts";
+import * as $6 from "./routes/auth/forgot-password.tsx";
+import * as $7 from "./routes/auth/index.tsx";
+import * as $8 from "./routes/auth/login.tsx";
+import * as $9 from "./routes/auth/signup.tsx";
+import * as $10 from "./routes/auth/verify-otp.tsx";
+import * as $11 from "./routes/index.tsx";
 import * as $$0 from "./islands/EditPlantModal.tsx";
 import * as $$1 from "./islands/ImageUpload.tsx";
 
 const manifest = {
   routes: {
     "./routes/_middleware.ts": $0,
-    "./routes/admin/index.tsx": $1,
-    "./routes/admin/plants/create.tsx": $2,
-    "./routes/admin/plants/index.tsx": $3,
-    "./routes/api/file-stream.ts": $4,
-    "./routes/auth/forgot-password.tsx": $5,
-    "./routes/auth/index.tsx": $6,
-    "./routes/auth/login.tsx": $7,
-    "./routes/auth/signup.tsx": $8,
-    "./routes/auth/verify-otp.tsx": $9,
-    "./routes/index.tsx": $10,
+    "./routes/admin/customers/index.tsx": $1,
+    "./routes/admin/index.tsx": $2,
+    "./routes/admin/plants/create.tsx": $3,
+    "./routes/admin/plants/index.tsx": $4,
+    "./routes/api/file-stream.ts": $5,
+    "./routes/auth/forgot-password.tsx": $6,
+    "./routes/auth/index.tsx": $7,
+    "./routes/auth/login.tsx": $8,
+    "./routes/auth/signup.tsx": $9,
+    "./routes/auth/verify-otp.tsx": $10,
+    "./routes/index.tsx": $11,
   },
   islands: {
     "./islands/EditPlantModal.tsx": $$0,
