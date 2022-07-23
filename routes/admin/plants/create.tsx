@@ -5,6 +5,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import AdminLayout from "@layouts/AdminLayout.tsx";
 import { createPlant } from "@database/index.ts";
 import { Status } from "http/http_status.ts";
+import ImageUpload from "../../../islands/ImageUpload.tsx";
 
 export const handler: Handlers = {
   async POST(req, ctx) {
@@ -133,17 +134,8 @@ export default function PlantsCreate({ data }: PageProps) {
           <label className={tw`font-normal text-gray-600`} htmlFor="image">
             Plant Image
           </label>
-          <input
-            accept="image/*"
-            type="file"
-            className={tw`${
-              error?.image
-                ? "ring-2 ring-red-400 focus:ring-red-400"
-                : "focus:ring-blue-400"
-            } outline-none px-4 py-3 border border-gray-400 rounded-md focus:ring-2`}
-            name="image"
-            id="image"
-          />
+          <ImageUpload name="image" />
+
           {error?.image && (
             <p className={tw`text-red-500 text-sm`}>{error.image}</p>
           )}
