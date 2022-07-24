@@ -15,6 +15,7 @@ interface Props {
     | {
         _id: string;
         name: string;
+        role: string;
       };
 }
 export default function AppLayout({ children, title, currentUser }: Props) {
@@ -37,7 +38,13 @@ export default function AppLayout({ children, title, currentUser }: Props) {
               <CartIcon />
             </a>
             <a
-              href={currentUser ? "/profile" : "/auth"}
+              href={
+                currentUser
+                  ? currentUser.role === "admin"
+                    ? "/profile"
+                    : "/admin"
+                  : "/auth"
+              }
               className={tw`flex items-center space-x-2`}
             >
               <ProfileIcon />
