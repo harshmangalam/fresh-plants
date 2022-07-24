@@ -3,7 +3,6 @@
 import { h } from "preact";
 import { tw } from "twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import AuthLayout from "@layouts/AuthLayout.tsx";
 import AuthHeader from "@components/auth/AuthHeader.tsx";
 import { isEmpty, validateEmail } from "@utils/validations.ts";
 import { hashPassword } from "@utils/password.ts";
@@ -99,8 +98,8 @@ export default function AuthSignup({ data }: PageProps<SignupResponse>) {
   const error = data?.error;
   const fields = data?.fields;
   return (
-    <AuthLayout>
-      <div className={tw`max-w-md w-full p-6 shadow-md bg-white rounded-lg`}>
+   
+      <div className={tw`max-w-md w-full  mx-auto p-6 shadow-md bg-white rounded-lg`}>
         {/* login card top section  */}
         <AuthHeader
           text="Already have an account ?"
@@ -185,6 +184,6 @@ export default function AuthSignup({ data }: PageProps<SignupResponse>) {
           </form>
         </section>
       </div>
-    </AuthLayout>
+
   );
 }

@@ -1,21 +1,20 @@
-/**@jsx h */
+/** @jsx h */
 
 import { Head } from "$fresh/runtime.ts";
-import { ComponentChildren, h } from "preact";
+import { AppProps } from "$fresh/server.ts";
+import { h } from "preact";
 import { tw } from "twind";
-import CartIcon from "@icons/CartIcon.tsx"
-import ProfileIcon from "@icons/ProfileIcon.tsx"
 
-interface Props {
-  children: ComponentChildren;
-  title: string;
-}
-export default function AppLayout({ children, title }: Props) {
+import CartIcon from "@icons/CartIcon.tsx";
+import ProfileIcon from "@icons/ProfileIcon.tsx";
+
+export default function App(props: AppProps) {
   return (
     <div className={tw`min-h-screen bg-gray-100`}>
       <Head>
-        <title>{title}</title>
+        <meta name="description" content="Fresh Plants" />
       </Head>
+      {/* navbar  */}
       <nav className={tw`bg-white`}>
         <div
           className={tw`flex items-center justify-between h-16 max-w-6xl mx-auto px-4`}
@@ -35,7 +34,9 @@ export default function AppLayout({ children, title }: Props) {
           </div>
         </div>
       </nav>
-      <main className={tw`py-4 px-4 max-w-6xl mx-auto`}>{children}</main>
+      <main className={tw`py-4 px-4 max-w-6xl mx-auto`}>
+        <props.Component />
+      </main>
     </div>
   );
 }
