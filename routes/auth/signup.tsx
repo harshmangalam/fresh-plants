@@ -7,6 +7,7 @@ import AuthHeader from "@components/auth/AuthHeader.tsx";
 import { isEmpty, validateEmail } from "@utils/validations.ts";
 import { hashPassword } from "@utils/password.ts";
 import { Status } from "http/http_status.ts";
+import AppLayout from "@layouts/AppLayout.tsx";
 
 import { db } from "@database/connection.ts";
 import { UserRole, UserSchema } from "@database/index.ts";
@@ -98,8 +99,10 @@ export default function AuthSignup({ data }: PageProps<SignupResponse>) {
   const error = data?.error;
   const fields = data?.fields;
   return (
-   
-      <div className={tw`max-w-md w-full  mx-auto p-6 shadow-md bg-white rounded-lg`}>
+    <AppLayout title="Signup">
+      <div
+        className={tw`max-w-md w-full  mx-auto p-6 shadow-md bg-white rounded-lg`}
+      >
         {/* login card top section  */}
         <AuthHeader
           text="Already have an account ?"
@@ -184,6 +187,6 @@ export default function AuthSignup({ data }: PageProps<SignupResponse>) {
           </form>
         </section>
       </div>
-
+    </AppLayout>
   );
 }

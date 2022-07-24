@@ -85,7 +85,7 @@ export default function ProductsHome({
   url,
 }: PageProps<{ error?: string; result?: PlantSchema[] }>) {
   return (
-    <AdminLayout pathname={url.pathname}>
+    <AdminLayout title="Admin | Plants" pathname={url.pathname}>
       {data?.error && <p>{data.error}</p>}
       <div className={tw`flex justify-between mt-2`}>
         <a

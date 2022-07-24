@@ -10,7 +10,7 @@ import { UserSchema } from "@database/index.ts";
 import { db } from "@database/connection.ts";
 import { createJWT } from "@utils/token.ts";
 import { Status } from "http/http_status.ts";
-
+import AppLayout from "@layouts/AppLayout.tsx";
 type LoginFields = {
   email?: string;
   password?: string;
@@ -97,8 +97,10 @@ export default function AuthLogin({ data }: PageProps<LoginResponse>) {
   const fields = data?.fields;
 
   return (
-  
-      <div className={tw`max-w-md mx-auto w-full p-6 shadow-md bg-white rounded-lg`}>
+    <AppLayout title={"Login"}>
+      <div
+        className={tw`max-w-md mx-auto w-full p-6 shadow-md bg-white rounded-lg`}
+      >
         {/* login card top section  */}
         <AuthHeader
           linkHref="/auth/signup"
@@ -173,5 +175,6 @@ export default function AuthLogin({ data }: PageProps<LoginResponse>) {
           </form>
         </section>
       </div>
+    </AppLayout>
   );
 }
