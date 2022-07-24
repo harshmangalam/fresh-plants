@@ -14,20 +14,11 @@ interface Props {
 }
 export default function AdminLayout({ children, pathname }: Props) {
   return (
-    <div>
+    <div className={tw`grid grid-cols-12 bg-white`}>
       {/* dashboard sidebar */}
-      <aside
-        className={tw`absolute top-0 left-0 bottom-0 overflow-y-auto bg-white w-[20%]  p-6  shadow`}
-      >
+      <aside className={tw`col-span-4 p-4 border-r`}>
         <section className={tw`flex flex-col space-y-6`}>
-          {/*  dashboard sidebar logo  */}
-          <a href="/" className={tw`flex space-x-3 items-center`}>
-            <img className={tw`w-10 h-10`} src="/logo.svg" alt="Shop logo" />
-            <h1 className={tw`text-xl font-bold`}>Dashboard</h1>
-          </a>
-
-          {/* dashboard sidebar menu links  */}
-
+         
           <div className={tw`flex flex-col space-y-3`}>
             {menus.map((menu) => (
               <a
@@ -45,34 +36,7 @@ export default function AdminLayout({ children, pathname }: Props) {
           </div>
         </section>
       </aside>
-
-      {/* dashboard main content  */}
-      <main className={tw`ml-[20%] h-screen overflow-y-auto pb-4`}>
-        {/* dashboard navbar  */}
-        <nav className={tw`flex justify-end items-center p-6 `}>
-          <div className={tw`flex space-x-6 items-center `}>
-            <div className={tw`relative`}>
-              <NotificationIcon />
-
-              <span
-                className={tw`animate-bounce absolute w-2 h-2 rounded-full bg-red-500 top-2 right-1`}
-              ></span>
-            </div>
-            <a
-              href="/admin/profile"
-              className={tw`flex items-center space-x-3`}
-            >
-              <img
-                src="https://avatars.githubusercontent.com/u/57381638?v=4"
-                alt="profile avatar"
-                className={tw`w-8 h-8 rounded-full`}
-              />
-              <h2 className={tw`font-medium text-gray-500`}>Harsh Mangalam</h2>
-            </a>
-          </div>
-        </nav>
-        <div className={tw`px-6`}>{children}</div>
-      </main>
+      <div className={tw`p-4 col-span-8`}>{children}</div>
     </div>
   );
 }
