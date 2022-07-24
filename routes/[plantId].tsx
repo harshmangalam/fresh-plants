@@ -2,23 +2,33 @@
 import { h } from "preact";
 import { tw } from "twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { fetchPlant, PlantSchema } from "@database/index.ts";
+import { fetchPlant, PlantSchema, UserSchema } from "@database/index.ts";
 import { showFile } from "@utils/file.ts";
 import AppLayout from "@layouts/AppLayout.tsx";
 interface State {
   plant?: PlantSchema;
   error?: string;
+  currentUser?: null | UserSchema;
 }
 export const handler: Handlers<State> = {
   async GET(req, ctx) {
     try {
       const plant = await fetchPlant(ctx.params.plantId);
       if (!plant) {
-        return ctx.render({ error: "Plant not found" });
+        return ctx.render({
+          error: "Plant not found",
+          currentUser: ctx.state.currentUser as UserSchema,
+        });
       }
-      return ctx.render({ plant });
+      return ctx.render({
+        plant,
+        currentUser: ctx.state.currentUser as UserSchema,
+      });
     } catch (error) {
-      return ctx.render({ error: "Something went wrong" });
+      return ctx.render({
+        error: "Something went wrong",
+        currentUser: ctx.state.currentUser as UserSchema,
+      });
     }
   },
 };
@@ -31,7 +41,10 @@ export default function PlantItemRoute({ data, params }: PageProps<State>) {
   }
 
   return (
-    <AppLayout title={`Plant | ${params.plantId}`}>
+    <AppLayout
+      title={`Plant | ${params.plantId}`}
+      currentUser={data.currentUser}
+    >
       <div className={tw`grid grid-cols-1 gap-12 md:grid-cols-2`}>
         <img
           src={showFile(plant.image)}

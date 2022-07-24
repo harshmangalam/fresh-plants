@@ -18,7 +18,7 @@ export async function handler(req: Request, ctx: MiddlewareHandlerContext) {
         const users = db.collection<UserSchema>("users");
         const user = await users.findOne({ _id: new ObjectId(userId) });
 
-        ctx.state.user = { ...user, password: undefined };
+        ctx.state.currentUser = { ...user, password: undefined };
       }
     }
 

@@ -3,14 +3,21 @@
 import { Head } from "$fresh/runtime.ts";
 import { ComponentChildren, h } from "preact";
 import { tw } from "twind";
-import CartIcon from "@icons/CartIcon.tsx"
-import ProfileIcon from "@icons/ProfileIcon.tsx"
+import CartIcon from "@icons/CartIcon.tsx";
+import ProfileIcon from "@icons/ProfileIcon.tsx";
 
 interface Props {
   children: ComponentChildren;
   title: string;
+  currentUser:
+    | null
+    | undefined
+    | {
+        _id: string;
+        name: string;
+      };
 }
-export default function AppLayout({ children, title }: Props) {
+export default function AppLayout({ children, title, currentUser }: Props) {
   return (
     <div className={tw`min-h-screen bg-gray-100`}>
       <Head>
@@ -29,8 +36,12 @@ export default function AppLayout({ children, title }: Props) {
             <a href="/cart" className={tw``}>
               <CartIcon />
             </a>
-            <a href="/auth" className={tw``}>
+            <a
+              href={currentUser ? "/profile" : "/auth"}
+              className={tw`flex items-center space-x-2`}
+            >
               <ProfileIcon />
+              <span>{currentUser?.name}</span>
             </a>
           </div>
         </div>
