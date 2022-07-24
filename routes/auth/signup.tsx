@@ -105,7 +105,7 @@ export default function AuthSignup({ data }: PageProps<SignupResponse>) {
         <AuthHeader
           text="Already have an account ?"
           linkName="Login"
-          linkHref="/auth/login"
+          linkHref="/auth"
         />
 
         {/* login card body section  */}

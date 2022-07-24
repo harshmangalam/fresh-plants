@@ -15,11 +15,15 @@ export async function createPlant(plant: CreatePlantSchema) {
 }
 
 export async function fetchPlant(id: string) {
-  const plant = await plantCollection.findOne({
-    _id: new ObjectId(id),
-  });
+  try {
+    const plant = await plantCollection.findOne({
+      _id: new ObjectId(id),
+    });
 
-  return plant;
+    return plant;
+  } catch (_error) {
+    return null;
+  }
 }
 
 export async function fetchPlants() {

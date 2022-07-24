@@ -35,7 +35,7 @@ export default function PlantCard({
           <p
             className={tw`flex items-center space-x-1 text-blue-500 font-medium text-xl`}
           >
-            <RupeesIcon />
+            <span>Rs</span>
             <span>{price}</span>
           </p>
           <p
