@@ -45,7 +45,7 @@ export default function PlantCard({
           </p>
         </div>
 
-        <h3 className={tw`text-gray-600 text-lg font-medium`}>{name}</h3>
+        <h3 className={tw`truncate text-gray-600 text-lg font-medium`}>{name}</h3>
         <button className={tw`mt-4 bg-blue-400 text-white font-bold w-full px-4 py-2 rounded-md focus:outline-none hover:bg-blue-500`}>Add to cart</button>
       </div>
     </article>
