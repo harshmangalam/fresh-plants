@@ -3,5 +3,7 @@
 import dev from "$fresh/dev.ts";
 import { createMongodbConnection } from "@database/connection.ts";
 
+
 await createMongodbConnection()
+
 await dev(import.meta.url, "./main.ts");

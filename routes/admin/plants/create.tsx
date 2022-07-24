@@ -38,16 +38,16 @@ export const handler: Handlers = {
     }
   },
 };
-export default function PlantsCreate({ data }: PageProps) {
+export default function PlantsCreate({ data,url }: PageProps) {
   const fields = data?.fields;
   const error = data?.error;
   return (
-    <AdminLayout>
+    <AdminLayout pathname={url.pathname}>
       {error?.general && <p>{error.general}</p>}
       <form
         method="post"
         encType="multipart/form-data"
-        className={tw`grid grid-cols-2 gap-4 max-w-xl mx-auto border shadow rounded-xl p-6`}
+        className={tw`grid grid-cols-2 gap-4 max-w-xl mx-auto`}
       >
         <div className={tw`flex flex-col space-y-2 col-span-2`}>
           <label className={tw`font-normal text-gray-600`} htmlFor="name">
