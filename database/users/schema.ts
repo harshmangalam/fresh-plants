@@ -9,6 +9,6 @@ export interface UserSchema {
 }
 
 export enum UserRole {
-  user,
-  admin,
+  user="user",
+  admin="admin",
 }
