@@ -1,5 +1,8 @@
 export const IMAGE_DIR = "images";
-
+export const FILE_API = "/api/file-stream";
+export function showFile(image: string) {
+  return `${FILE_API}/?file=${image}`;
+}
 export async function fileUpload(file: File) {
   const isExist = await exists(IMAGE_DIR);
   if (!isExist) {

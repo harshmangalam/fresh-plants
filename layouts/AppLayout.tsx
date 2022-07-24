@@ -14,7 +14,7 @@ export default function AppLayout({ children ,title}: Props) {
       <Head>
         <title>{title}</title>
       </Head>
-      <main className={tw`py-4`}>{children}</main>
+      <main className={tw`py-4 px-4 max-w-6xl mx-auto`}>{children}</main>
     </div>
   );
 }
